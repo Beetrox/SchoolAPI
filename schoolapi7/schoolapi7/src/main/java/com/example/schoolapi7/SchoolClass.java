@@ -4,18 +4,28 @@ import java.util.Date;
 
 public class SchoolClass {
 
+    private int id;
     private String subject;
     private String teacher;
     private String classroom;
     private Date startingTime;
     private Date endTime;
 
-    public SchoolClass(String subject, String teacher, String classroom, Date startingTime, Date endTime) {
+    public SchoolClass(int id, String subject, String teacher, String classroom, Date startingTime, Date endTime) {
+        this.id = id;
         this.subject = subject;
         this.teacher = teacher;
         this.classroom = classroom;
         this.startingTime = startingTime;
         this.endTime = endTime;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getSubject() {

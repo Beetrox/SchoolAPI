@@ -11,13 +11,13 @@ public class ClassroomController {
     private List<Classroom> classrooms;
 
     public ClassroomController() {
-        classrooms = new ArrayList<Classroom>();
+        classrooms = new ArrayList<>();
     }
 
     @RequestMapping(value = "/classrooms" , method = RequestMethod.GET)
     public List<Classroom> getClassrooms(@RequestParam(value="searchString", defaultValue = "") String classroomName) {
         ArrayList<Classroom> result = new ArrayList<>();
-        for (Classroom classroom : classrooms ) {
+        for (Classroom classroom : classrooms) {
             if(classroom.getName().contains(classroomName))
                 result.add(classroom);
         }
