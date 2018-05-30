@@ -9,13 +9,13 @@ import java.util.List;
 @RestController
 public class SchoolClassController {
 
-    FileService fileService;
-    List<SchoolClass> schoolClasses;
+    private FileService fileService;
+    private List<SchoolClass> schoolClasses;
 
     public SchoolClassController() {
         fileService = new FileService();
         schoolClasses = new ArrayList<>();
-//        schoolClasses.add(new SchoolClass(1, "Math", "Tora", "A101", new Date(), new Date()));
+//        schoolClasses.add(new SchoolClass(2, "English", "Cleo", "A201", new Date(), new Date()));
     }
 
     @RequestMapping(value = "/schoolclasses" , method = RequestMethod.GET)
@@ -29,14 +29,14 @@ public class SchoolClassController {
         return result;
     }
 
-    @RequestMapping(value = "/schoolclass/{id}" , method = RequestMethod.GET)
+    @RequestMapping(value = "/schoolclasses/{id}" , method = RequestMethod.GET)
     public SchoolClass getSchoolClass(@PathVariable("id") int id) {
         ArrayList<SchoolClass> schoolClasses = fileService.getSchoolClasses();
-        SchoolClass schoolClass = findSchoolClassById(id);
+        SchoolClass schoolClass = findSchoolClassById(id, schoolClasses);
         return schoolClass;
     }
 
-    @RequestMapping(value = "/schoolclass", method = RequestMethod.POST)
+    @RequestMapping(value = "/schoolclasses", method = RequestMethod.POST)
     public SchoolClass postSchoolClass(@RequestBody SchoolClass schoolClass) {
         ArrayList<SchoolClass> schoolClasses = fileService.getSchoolClasses();
         if (schoolClass == null) {
@@ -47,10 +47,10 @@ public class SchoolClassController {
         return schoolClass;
     }
 
-    @RequestMapping(value = "/schoolclass/{id}" , method = RequestMethod.PUT)
+    @RequestMapping(value = "/schoolclasses/{id}" , method = RequestMethod.PUT)
     public SchoolClass putSchoolClass(@PathVariable("id") int id, @RequestBody SchoolClass schoolClass) {
         ArrayList<SchoolClass> schoolClasses = fileService.getSchoolClasses();
-        SchoolClass schoolClass1 = findSchoolClassById(id);
+        SchoolClass schoolClass1 = findSchoolClassById(id, schoolClasses);
         schoolClasses.remove(schoolClass1);
         schoolClasses.add(schoolClass);
 
@@ -58,10 +58,10 @@ public class SchoolClassController {
         return schoolClass;
     }
 
-    @RequestMapping(value = "/schoolclass/{id}" , method = RequestMethod.DELETE)
+    @RequestMapping(value = "/schoolclasses/{id}" , method = RequestMethod.DELETE)
     public boolean deleteSchoolClass(@PathVariable("id")int id) {
         ArrayList<SchoolClass> schoolClasses = fileService.getSchoolClasses();
-        SchoolClass schoolClass = findSchoolClassById(id);
+        SchoolClass schoolClass = findSchoolClassById(id, schoolClasses);
         if (schoolClass == null) {
             return false;
         }
@@ -70,7 +70,7 @@ public class SchoolClassController {
         return true;
     }
 
-    private SchoolClass findSchoolClassById(int id) {
+    private SchoolClass findSchoolClassById(int id, ArrayList<SchoolClass> schoolClasses) {
         for (int i = 0; i < schoolClasses.size(); i++) {
             SchoolClass schoolClass = schoolClasses.get(i);
             if (schoolClass.getId() == id) {

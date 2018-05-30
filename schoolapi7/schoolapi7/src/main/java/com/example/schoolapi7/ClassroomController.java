@@ -9,7 +9,7 @@ import java.util.List;
 @RestController
 public class ClassroomController {
 
-    FileService fileService;
+    private FileService fileService;
 
     public ClassroomController() {
         fileService = new FileService();
@@ -26,14 +26,14 @@ public class ClassroomController {
         return result;
     }
 
-    @RequestMapping(value = "/classroom/{id}" , method = RequestMethod.GET)
+    @RequestMapping(value = "/classrooms/{id}" , method = RequestMethod.GET)
     public Classroom getClassroom(@PathVariable("id") int id) {
         ArrayList<Classroom> classrooms = fileService.getClassrooms();
         Classroom classroom = findClassroomById(id, classrooms);
         return classroom;
     }
 
-    @RequestMapping(value = "/classroom", method = RequestMethod.POST)
+    @RequestMapping(value = "/classrooms", method = RequestMethod.POST)
     public Classroom postClassroom(@RequestBody Classroom classroom) {
         ArrayList<Classroom> classrooms = fileService.getClassrooms();
         if (classroom == null) {
@@ -44,7 +44,7 @@ public class ClassroomController {
         return classroom;
     }
 
-    @RequestMapping(value = "/classroom/{id}" , method = RequestMethod.PUT)
+    @RequestMapping(value = "/classrooms/{id}" , method = RequestMethod.PUT)
     public Classroom putClassroom(@PathVariable("id") int id, @RequestBody Classroom classroom) {
         ArrayList<Classroom> classrooms = fileService.getClassrooms();
         Classroom classroom1 = findClassroomById(id, classrooms);
@@ -54,7 +54,7 @@ public class ClassroomController {
         return classroom;
     }
 
-    @RequestMapping(value = "/classroom/{id}" , method = RequestMethod.DELETE)
+    @RequestMapping(value = "/classrooms/{id}" , method = RequestMethod.DELETE)
     public boolean deleteClassroom(@PathVariable("id")int id) {
         ArrayList<Classroom> classrooms = fileService.getClassrooms();
         Classroom classroom = findClassroomById(id, classrooms);
