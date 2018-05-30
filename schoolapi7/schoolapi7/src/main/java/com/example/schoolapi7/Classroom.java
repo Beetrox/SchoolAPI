@@ -8,6 +8,8 @@ public class Classroom {
     private String name;
     private List<SchoolClass> schoolClasses;
 
+    public Classroom(){}
+
     public Classroom(int id, String name, List<SchoolClass> schoolClasses) {
         this.id = id;
         this.name = name;
@@ -36,5 +38,14 @@ public class Classroom {
 
     public void setSchoolClasses(List<SchoolClass> schoolClasses) {
         this.schoolClasses = schoolClasses;
+    }
+
+    public List<SchoolClass> classroomClasses(SchoolClass schoolClass, Classroom classroom) {
+        if (schoolClass.getClassroom().equals(classroom.getName())){
+            schoolClasses.add(schoolClass);
+            return schoolClasses;
+        }
+        schoolClasses.clear();
+        return schoolClasses;
     }
 }

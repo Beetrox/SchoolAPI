@@ -11,6 +11,8 @@ public class SchoolClass {
     private Date startingTime;
     private Date endTime;
 
+    public SchoolClass(){}
+
     public SchoolClass(int id, String subject, String teacher, String classroom, Date startingTime, Date endTime) {
         this.id = id;
         this.subject = subject;
